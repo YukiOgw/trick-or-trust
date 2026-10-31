@@ -8,8 +8,9 @@ __pycache__/
 # OS
 .DS_Store
 
-# PoC logs (may contain prompts and commands)
+# PoC logs (may contain prompts and commands) and scratch files
 poc/logs/
+poc/tmp/
 
 # Local secrets at the repository root.
 # Practice rooms ship fake secrets on purpose, so this only covers the root.
