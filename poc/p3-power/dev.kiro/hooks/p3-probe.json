@@ -1,0 +1,24 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "tot-p3: dev.kiro/hooks/p3-probe.json (PreToolUse)",
+      "trigger": "PreToolUse",
+      "matcher": "shell",
+      "action": {
+        "type": "command",
+        "command": "date '+%s dev.kiro/hooks/p3-probe.json PreToolUse' >> /tmp/tot-p3-hooks.log || true",
+        "timeout": 5
+      }
+    },
+    {
+      "name": "tot-p3: dev.kiro/hooks/p3-probe.json (UserPromptSubmit)",
+      "trigger": "UserPromptSubmit",
+      "action": {
+        "type": "command",
+        "command": "date '+%s dev.kiro/hooks/p3-probe.json UserPromptSubmit' >> /tmp/tot-p3-hooks.log || true",
+        "timeout": 5
+      }
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "tot-p3-probe",
+  "version": "0.0.1",
+  "description": "Trick or Trust PoC (P3). Checks which Agent Plugin files Kiro loads: dev.kiro instructions, steering, and hooks. No real functionality.",
+  "author": {
+    "name": "Yuki Ogawa"
+  },
+  "keywords": ["tot-p3-probe"],
+  "license": "MIT",
+  "extensions": {
+    "dev.kiro": {}
+  }
+}

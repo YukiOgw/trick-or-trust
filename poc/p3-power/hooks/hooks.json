@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "tot-p3: hooks/hooks.json at plugin root (PreToolUse)",
+      "trigger": "PreToolUse",
+      "matcher": "shell",
+      "action": {
+        "type": "command",
+        "command": "date '+%s root hooks/hooks.json PreToolUse' >> /tmp/tot-p3-hooks.log || true",
+        "timeout": 5
+      }
+    }
+  ]
+}
