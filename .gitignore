@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.hypothesis/
+
+# OS
+.DS_Store
+
+# PoC logs (may contain prompts and commands)
+poc/logs/
+
+# Local secrets at the repository root.
+# Practice rooms ship fake secrets on purpose, so this only covers the root.
+/.env
+/.env.*
