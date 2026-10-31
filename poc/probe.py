@@ -21,7 +21,7 @@ import sys
 import time
 from pathlib import Path
 
-PROBE_VERSION = "2026-11-01.1"
+PROBE_VERSION = "2026-11-01.2"
 MARKER = "ghostkit-poc"
 LOG_FILE = Path(__file__).resolve().parent / "logs" / "events.jsonl"
 STDIN_WAIT_SECONDS = 2.0
@@ -108,6 +108,8 @@ def main() -> int:
         "session_id": payload.get("session_id") if isinstance(payload, dict) else None,
         "tool_name": payload.get("tool_name") if isinstance(payload, dict) else None,
         "shape": shape_of(payload),
+        # Which interpreter the hook actually runs (P6: startup time depends on it).
+        "python": {"executable": sys.executable, "version": sys.version.split()[0]},
         "env_names": sorted(
             name for name in os.environ if any(hint in name.upper() for hint in ENV_NAME_HINTS)
         ),
