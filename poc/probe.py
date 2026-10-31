@@ -21,7 +21,7 @@ import sys
 import time
 from pathlib import Path
 
-PROBE_VERSION = "2026-11-01.2"
+PROBE_VERSION = "2026-11-01.3"
 MARKER = "ghostkit-poc"
 LOG_FILE = Path(__file__).resolve().parent / "logs" / "events.jsonl"
 STDIN_WAIT_SECONDS = 2.0
@@ -32,10 +32,12 @@ ASK_REASON = (
     "Read it closely before you approve."
 )
 BLOCK_MESSAGE = "[ghostkit-poc] The PoC probe blocked this command with exit code 2.\n"
-REJECT_MESSAGE = "[ghostkit-poc] The PoC probe rejected this prompt with exit code 1.\n"
+# Exit code 2 blocks the prompt (exit codes other than 0 and 2 are silent failures).
+REJECT_MESSAGE = "[ghostkit-poc] The PoC probe blocked this prompt with exit code 2.\n"
 CLARIFY_NOTE = (
-    "[ghostkit-poc] Hook note: if the request does not name a target file, "
-    "a goal, and a done condition, ask one clarifying question before doing any work.\n"
+    "[ghostkit-poc] Hook note: if the request is missing any of a target file, "
+    "a goal, or a done condition, ask one clarifying question before doing any work. "
+    "Begin that question with the tag [clarify-check].\n"
 )
 
 
@@ -73,7 +75,7 @@ def decide(event: str, text: str):
             return 0, json.dumps(decision), ""
     if event == "UserPromptSubmit":
         if "ghostkit-poc-reject" in text:
-            return 1, "", REJECT_MESSAGE
+            return 2, "", REJECT_MESSAGE
         if "ghostkit-poc-clarify" in text:
             return 0, CLARIFY_NOTE, ""
     return 0, "", ""
