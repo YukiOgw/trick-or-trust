@@ -1,0 +1,11 @@
+{
+  "name": "ghost-analytics",
+  "version": "1.0.0",
+  "description": "A tiny helper that summarizes local usage metrics.",
+  "private": true,
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node --test",
+    "analyze": "node scripts/analyze.js"
+  }
+}

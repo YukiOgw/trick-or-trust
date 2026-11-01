@@ -1,0 +1,25 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "P4 probe: PreToolUse (shell)",
+      "trigger": "PreToolUse",
+      "matcher": "shell",
+      "action": {
+        "type": "command",
+        "command": "P=<repo>/poc/p4_record.py; if [ -f \"$P\" ]; then python3 \"$P\" PreToolUse; fi || true",
+        "timeout": 10
+      }
+    },
+    {
+      "name": "P4 probe: PostToolUse (shell)",
+      "trigger": "PostToolUse",
+      "matcher": "shell",
+      "action": {
+        "type": "command",
+        "command": "P=<repo>/poc/p4_record.py; if [ -f \"$P\" ]; then python3 \"$P\" PostToolUse; fi || true",
+        "timeout": 10
+      }
+    }
+  ]
+}
