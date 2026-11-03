@@ -1,0 +1,15 @@
+[project]
+name = "ghostkit"
+version = "0.1.0"
+description = "Policy engine and toolkit behind the Trick or Trust hooks."
+requires-python = ">=3.11"
+# Runtime uses only the standard library; no runtime dependencies on purpose.
+
+[project.optional-dependencies]
+test = ["pytest>=8", "hypothesis>=6"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.setuptools]
+packages = ["ghostkit"]
