@@ -46,7 +46,7 @@ def main(argv=None) -> int:
     result = safety_mod.guard(result, event, pol.training_mode)
 
     if args.log:
-        log_mod.append(args.log, event, result, pol.log_verbosity)
+        log_mod.append(args.log, event, result, pol.log_verbosity, pol.reject_phrase)
 
     return decision_mod.emit(result, event)
 

@@ -32,6 +32,7 @@ class Policy:
     default: str = "allow"
     training_mode: bool = True
     log_verbosity: str = "minimal"
+    reject_phrase: str = "The user rejected this tool call."
     valid: bool = True
     error: str | None = None
 
@@ -70,6 +71,7 @@ def load(path) -> Policy:
         default=data.get("default", "allow"),
         training_mode=bool(data.get("training_mode", True)),
         log_verbosity=data.get("log_verbosity", "minimal"),
+        reject_phrase=data.get("reject_phrase", "The user rejected this tool call."),
     )
 
 

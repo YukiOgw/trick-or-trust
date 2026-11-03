@@ -16,3 +16,6 @@ poc/tmp/
 # Practice rooms ship fake secrets on purpose, so this only covers the root.
 /.env
 /.env.*
+
+# ghostkit runtime logs (per project/room)
+.ghostkit/

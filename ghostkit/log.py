@@ -7,13 +7,17 @@ import time
 from pathlib import Path
 
 
-def append(log_path, event, decision, verbosity: str = "minimal") -> None:
+def append(log_path, event, decision, verbosity: str = "minimal", reject_phrase: str = "") -> None:
     """Append one JSON line. Never raise into the user's session.
 
     verbosity:
       - "minimal" (default): no command/prompt/response bodies.
       - "commands": also store the command string (used by Haunted House scoring).
       - "full": also store the tool_response.
+
+    For PostToolUse, a boolean `rejected` is always recorded (derived from
+    reject_phrase), so the report can tell treat from trick without storing the
+    full response body.
     """
     try:
         record = {
@@ -24,6 +28,9 @@ def append(log_path, event, decision, verbosity: str = "minimal") -> None:
             "decision": decision.kind,
             "reason": decision.reason,
         }
+        if event.trigger == "PostToolUse":
+            response = event.tool_response or ""
+            record["rejected"] = bool(reject_phrase and reject_phrase in response)
         if verbosity in ("commands", "full"):
             record["command"] = event.command
         if verbosity == "full":
