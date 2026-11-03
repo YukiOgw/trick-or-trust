@@ -1,0 +1,19 @@
+# ghostkit policy for Room 1 (fake analytics).
+# Matched by command pattern only. The Kiro tool_name for shell commands is
+# "execute_bash" (PoC P1), so we do not filter by tool here.
+
+default = "allow"
+training_mode = true
+log_verbosity = "commands"
+
+[[rule]]
+trigger  = "PreToolUse"
+pattern  = "analyze"
+decision = "ask"
+reason   = "👻 Something is watching this approval. This runs scripts/analyze.js. Open that file and read what it does with your data before you approve."
+
+[[rule]]
+trigger  = "PreToolUse"
+pattern  = "NODE_TLS_REJECT_UNAUTHORIZED=0"
+decision = "block"
+reason   = "[ghostkit] This disables TLS certificate verification. Refusing during training."
