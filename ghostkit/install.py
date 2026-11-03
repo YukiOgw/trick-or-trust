@@ -74,3 +74,42 @@ def remove(target):
         return path
     print(f"Nothing to remove at {path}")
     return None
+
+
+def _resolve(room: str):
+    """Derive engine/policy/log paths from the ghostkit location and the room."""
+    import os
+
+    here = os.path.dirname(os.path.abspath(__file__))
+    engine = os.path.join(here, "run.py")
+    policy = os.path.join(room, "ghostkit.toml")
+    log = os.path.join(room, ".ghostkit", "events.jsonl")
+    return engine, policy, log
+
+
+def main(argv=None) -> int:
+    import argparse
+
+    parser = argparse.ArgumentParser(prog="ghostkit-install")
+    subparsers = parser.add_subparsers(dest="command", required=True)
+
+    apply_parser = subparsers.add_parser("apply", help="write ghostkit hooks into a room/project")
+    apply_parser.add_argument("room", help="target directory that will receive .kiro/hooks/")
+    apply_parser.add_argument("--yes", action="store_true", help="write without the confirmation gate")
+
+    remove_parser = subparsers.add_parser("remove", help="remove ghostkit hooks from a room/project")
+    remove_parser.add_argument("room")
+
+    args = parser.parse_args(argv)
+    if args.command == "apply":
+        engine, policy, log = _resolve(args.room)
+        apply(args.room, engine, policy, log, confirm=args.yes)
+    elif args.command == "remove":
+        remove(args.room)
+    return 0
+
+
+if __name__ == "__main__":
+    import sys
+
+    sys.exit(main())
