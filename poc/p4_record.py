@@ -11,7 +11,7 @@ import sys
 import time
 from pathlib import Path
 
-LOG = Path("<repo>/poc/logs/p4-events.jsonl")
+LOG = Path(__file__).resolve().parent / "logs" / "p4-events.jsonl"
 
 
 def read_stdin() -> str:
