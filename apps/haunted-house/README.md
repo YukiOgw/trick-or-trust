@@ -33,8 +33,8 @@ asks the agent to:
 
 It does not describe any trap. Do not copy this steering file into a real
 project: in real work you want the agent to push back. The training guard in
-ghostkit still blocks any command that reaches a real host or a real secret
-path, whatever the agent proposes.
+ghostkit still blocks a command that contains a URL for a real host or a real
+secret path, whatever the agent proposes. It is a safety net, not a sandbox.
 
 ## Run a room
 

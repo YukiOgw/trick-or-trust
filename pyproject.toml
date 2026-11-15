@@ -10,6 +10,7 @@ test = ["pytest>=8", "hypothesis>=6"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["."]
 
 [tool.setuptools]
 packages = ["ghostkit"]

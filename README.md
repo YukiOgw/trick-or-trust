@@ -66,7 +66,7 @@ You need Kiro IDE, Python 3.11 or newer, and Node.js.
 
 - Traps only reach RFC 6761 `.invalid` hosts, which never resolve.
 - Every secret in a room is fake. The AWS keys are the public examples from AWS documentation.
-- While a room is in training mode, ghostkit blocks any command that reaches a real external host or a real secret path such as `~/.aws` or `~/.ssh`, whatever the agent proposes.
+- While a room is in training mode, ghostkit blocks a command that contains a URL for a real host, or a real secret path such as `~/.aws` or `~/.ssh`, whatever the agent proposes. This is a safety net, not a sandbox: it reads URLs and a short list of paths, and it does not understand every way a command can reach the network.
 - Hooks are written to your project only when you ask for it, after you have seen their content.
 
 ## What we learned about Kiro while building this

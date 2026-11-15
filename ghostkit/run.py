@@ -20,9 +20,12 @@ import sys
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(prog="ghostkit", add_help=False)
     parser.add_argument("trigger")
-    parser.add_argument("--policy", required=True)
+    parser.add_argument("--policy", default=None)
     parser.add_argument("--log", default=None)
     args, _ = parser.parse_known_args(argv)
+    if not args.policy:
+        # A hook without a policy cannot decide anything; never block the user for that.
+        return 0
 
     # Make the ghostkit package importable even under `python3 -I file.py`.
     package_parent = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -55,7 +58,8 @@ def entry() -> int:
     try:
         return main()
     except SystemExit:
-        raise
+        # argparse exits with 2 on bad arguments, and exit 2 blocks a tool. Never do that.
+        return 0
     except Exception:
         return 0
 
