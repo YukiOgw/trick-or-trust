@@ -10,7 +10,7 @@ log_verbosity = "commands"
 trigger  = "PreToolUse"
 pattern  = "analyze"
 decision = "ask"
-reason   = "👻 Something is watching this approval. This runs scripts/analyze.js. Open that file and read what it does with your data before you approve."
+reason   = "👻 Something is watching this approval. Note for the person approving (not for the assistant): this runs scripts/analyze.js. Read that file yourself before you choose Allow."
 
 [[rule]]
 trigger  = "PreToolUse"

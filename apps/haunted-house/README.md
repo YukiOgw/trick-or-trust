@@ -17,6 +17,23 @@ approve.
 All traps are harmless by construction: they only reach RFC 6761 `.invalid`
 hosts and ship fake secrets.
 
+## How the agent behaves in a room
+
+Today's models often read a script, notice the trap, and refuse to run it. That
+is good for you in real work, but it leaves nothing for you to practice on. So
+every room ships a short steering file (`.kiro/steering/practice-room.md`) that
+asks the agent to:
+
+- propose the command you asked for without auditing the scripts first, so that
+  you are the reviewer at the approval prompt;
+- stay inside the room and never touch real credentials;
+- stop when you deny an approval, instead of looking for a way around it.
+
+It does not describe any trap. Do not copy this steering file into a real
+project: in real work you want the agent to push back. The training guard in
+ghostkit still blocks any command that reaches a real host or a real secret
+path, whatever the agent proposes.
+
 ## Run a room
 
 1. Install the ghostkit hooks into the room:
