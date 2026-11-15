@@ -4,7 +4,10 @@ Classification (per session, paired by command):
   - PreToolUse block                     -> blocked  (ghostkit stopped it)
   - PreToolUse ask + PostToolUse rejected -> treat    (read and refused)
   - PreToolUse ask + PostToolUse executed -> trick    (approved; the ghost got in)
-  - PreToolUse ask with no PostToolUse    -> pending
+  - PreToolUse ask, no PostToolUse, but a later event in the session (e.g. Stop)
+                                          -> treat    (denied: the command never ran)
+  - PreToolUse ask, no PostToolUse, nothing after it
+                                          -> pending
 """
 
 from __future__ import annotations
@@ -57,8 +60,16 @@ def classify(events) -> list[dict]:
                 pending.pop(command)
                 outcome = "treat" if event.get("rejected") else "trick"
                 encounters.append({"outcome": outcome, "command": command, "session": session_id})
-        for command in pending:
-            encounters.append({"outcome": "pending", "command": command, "session": session_id})
+        for command, ask_event in pending.items():
+            # Denying a hook-raised approval produces no PostToolUse (observed in Kiro IDE
+            # 1.4.62). If anything was logged later in the same session, such as the Stop
+            # event, the approval was resolved without running the command: count it as refused.
+            resolved = any(
+                e.get("ts", 0) > ask_event.get("ts", 0) for e in items if e is not ask_event
+            )
+            encounters.append(
+                {"outcome": "treat" if resolved else "pending", "command": command, "session": session_id}
+            )
     return encounters
 
 

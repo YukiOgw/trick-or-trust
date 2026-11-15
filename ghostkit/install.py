@@ -43,6 +43,17 @@ def hook_definition(engine_path: str, policy_path: str, log_path: str) -> dict:
                     "timeout": 10,
                 },
             },
+            {
+                # A hook-raised approval that is denied produces no PostToolUse, so the
+                # end of the agent's turn is what tells the report the approval was resolved.
+                "name": "ghostkit: Stop",
+                "trigger": "Stop",
+                "action": {
+                    "type": "command",
+                    "command": _command(engine_path, "Stop", policy_path, log_path, tail=" || true"),
+                    "timeout": 10,
+                },
+            },
         ],
     }
 
