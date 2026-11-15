@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trick or Trust</title>
+<style>
+  body { background:#0b0b12; color:#e8e8f0; font-family:system-ui,-apple-system,sans-serif; margin:0; line-height:1.6; }
+  main { max-width:46rem; margin:0 auto; padding:3rem 1.5rem 4rem; }
+  h1 { font-size:2.4rem; margin:0 0 .3rem; letter-spacing:.02em; }
+  .tag { color:#c6b3ff; font-size:1.15rem; margin:0 0 2rem; }
+  h2 { margin-top:2.4rem; font-weight:600; }
+  code, pre { background:#15151f; border-radius:6px; }
+  code { padding:.1rem .35rem; color:#c6b3ff; }
+  pre { padding:1rem; overflow:auto; }
+  pre code { padding:0; }
+  table { border-collapse:collapse; width:100%; }
+  th, td { border-bottom:1px solid #2a2a38; padding:.55rem .6rem; text-align:left; vertical-align:top; }
+  th { color:#9aa; font-weight:500; }
+  a { color:#c6b3ff; }
+  .muted { color:#9aa; }
+</style>
+</head>
+<body>
+<main>
+  <h1>🎃 Trick or Trust</h1>
+  <p class="tag">Every Approve button is a door. Some have ghosts behind them.</p>
+
+  <p>When an AI coding agent asks "Run this command?", the person at the keyboard is the last line of defense.
+  Trick or Trust practices that moment inside Kiro, on the real approval screen, and keeps score.</p>
+
+  <p class="muted">Built for Kiroween 2026, Skeleton Crew: one small skeleton, two apps.</p>
+
+  <h2>One skeleton, two apps</h2>
+  <table>
+    <tr><th>Part</th><th>What it does</th></tr>
+    <tr><td><strong>ghostkit</strong></td><td>The skeleton. A small policy engine for Kiro hooks, Python standard library only. Reads a hook event, applies TOML rules, answers allow / ask / block, logs it, and builds a report.</td></tr>
+    <tr><td><strong>Haunted House</strong></td><td>Practice rooms. Each room is a tiny project that hides one harmless trap behind an ordinary task. When the trap reaches the approval screen, a ghost is standing next to it.</td></tr>
+    <tr><td><strong>Night Watch</strong></td><td>The same engine in an everyday project. Asks before <code>curl | sh</code>, <code>chmod 777</code>, <code>rm -rf</code>; blocks turning off TLS verification; audits over-broad permissions and credit-hungry setup.</td></tr>
+  </table>
+
+  <h2>What you see</h2>
+  <p>You ask Kiro to do something ordinary, such as "Set this project up by following the README".
+  Kiro proposes a command. The approval prompt carries a ghost and the exact command.
+  You read, then choose Allow or Deny. Afterwards, the graveyard shows what you did.</p>
+  <p><a href="graveyard-sample.html">See a sample graveyard</a> <span class="muted">(sample data, not a real player)</span></p>
+
+  <h2>Try it</h2>
+<pre><code>python3 ghostkit/install.py apply apps/haunted-house/rooms/01-fake-analytics --yes
+# open that folder in a new Kiro window, trust it, then ask:
+#   Run the analysis script and summarize the result.
+python3 ghostkit/report.py apps/haunted-house/rooms/01-fake-analytics/.ghostkit/events.jsonl -o graveyard.html</code></pre>
+
+  <h2>Harmless by construction</h2>
+  <p>Traps only reach <code>.invalid</code> hosts, which never resolve. Every secret in a room is fake.
+  While a room is in training mode, ghostkit blocks a command that contains a URL for a real host or a real secret path.</p>
+
+  <p><a href="https://github.com/YukiOgw/trick-or-trust">Source on GitHub</a></p>
+</main>
+</body>
+</html>
