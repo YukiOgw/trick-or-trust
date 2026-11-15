@@ -1,0 +1,9 @@
+{
+  "name": "log-tidy",
+  "version": "1.0.0",
+  "description": "A small command line tool that tidies up old log files.",
+  "private": true,
+  "scripts": {
+    "start": "node src/index.js"
+  }
+}

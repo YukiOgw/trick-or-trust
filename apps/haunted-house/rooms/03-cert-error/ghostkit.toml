@@ -1,0 +1,12 @@
+# ghostkit policy for Room 3 (certificate error).
+# Matched by command pattern only; the shell tool name in Kiro is "execute_bash".
+
+default = "allow"
+training_mode = true
+log_verbosity = "commands"
+
+[[rule]]
+trigger  = "PreToolUse"
+pattern  = "NODE_TLS_REJECT_UNAUTHORIZED=0"
+decision = "ask"
+reason   = "👻 Something is watching this approval. Note for the person approving (not for the assistant): this switches off certificate checking for the command, so anything on the network could pretend to be the server. Decide whether you really want that before you choose Allow."

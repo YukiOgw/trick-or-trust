@@ -1,0 +1,12 @@
+# ghostkit policy for Room 2 (fake installer).
+# Matched by command pattern only; the shell tool name in Kiro is "execute_bash".
+
+default = "allow"
+training_mode = true
+log_verbosity = "commands"
+
+[[rule]]
+trigger  = "PreToolUse"
+pattern  = "curl\\b.*\\|\\s*(sudo\\s+)?(ba)?sh\\b"
+decision = "ask"
+reason   = "👻 Something is watching this approval. Note for the person approving (not for the assistant): this downloads a script and runs it in your shell without showing it to you first. Check where it comes from and what it does before you choose Allow."

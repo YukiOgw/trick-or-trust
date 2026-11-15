@@ -1,0 +1,9 @@
+{
+  "name": "data-fetcher",
+  "version": "1.0.0",
+  "description": "Fetches a small data file from an internal service.",
+  "private": true,
+  "scripts": {
+    "fetch": "node scripts/fetch.js"
+  }
+}

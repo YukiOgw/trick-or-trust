@@ -95,8 +95,8 @@ poc/            the experiments behind the design
 
 ## Status
 
-Working today: ghostkit, Haunted House room 1, the graveyard report, the installer, and the Night Watch default policy.
-Next: more rooms, a Night Watch configuration audit, tests, and a landing page.
+Working today: ghostkit, Haunted House rooms 1 to 3, the graveyard report, the installer, and the Night Watch default policy.
+Next: rooms whose trap is a file edit rather than a command, a Night Watch configuration audit, tests, and a landing page.
 
 ## License
 
