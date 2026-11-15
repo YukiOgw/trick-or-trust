@@ -1,0 +1,31 @@
+# Night Watch default policy for everyday projects.
+# training_mode is off: this is not a practice room, so it must not force-block
+# real hosts. It asks or blocks on genuinely risky command shapes instead.
+
+default = "allow"
+training_mode = false
+log_verbosity = "minimal"
+
+[[rule]]
+trigger  = "PreToolUse"
+pattern  = "NODE_TLS_REJECT_UNAUTHORIZED=0"
+decision = "block"
+reason   = "[Night Watch] This disables TLS certificate verification. Blocked."
+
+[[rule]]
+trigger  = "PreToolUse"
+pattern  = "curl\\b.*\\|\\s*(sudo\\s+)?sh\\b"
+decision = "ask"
+reason   = "[Night Watch] This pipes a downloaded script straight into a shell. Read the URL and the script before you approve."
+
+[[rule]]
+trigger  = "PreToolUse"
+pattern  = "\\bchmod\\s+777\\b"
+decision = "ask"
+reason   = "[Night Watch] chmod 777 makes this world-writable. Confirm you mean it."
+
+[[rule]]
+trigger  = "PreToolUse"
+pattern  = "\\brm\\s+-rf\\b"
+decision = "ask"
+reason   = "[Night Watch] Recursive force delete. Check the path before you approve."

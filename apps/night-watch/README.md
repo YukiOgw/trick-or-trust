@@ -32,7 +32,19 @@ Pass `--no-user` to look at the project only, and `--permissions FILE` to check
 a specific file. The size guide for always-on steering is a heuristic (16 KB);
 change it with `--steering-kb`.
 
-## Install
+## Install as a Kiro power
+
+`powers/ghostkit-night-watch` packages Night Watch as a Kiro power with two skills:
+`install-night-watch` and `audit-kiro-setup`. In Kiro, open the Powers panel,
+choose **Add Custom Power**, then **Import power from a folder**, and pick that folder.
+Then ask Kiro to "install Night Watch in this project".
+
+Kiro does not load hooks from inside a power, so the install skill writes the hook file
+into your project's `.kiro/hooks/` itself. It shows you exactly what it will write first,
+and writes nothing until you agree. The power carries its own copy of ghostkit; a test
+fails if that copy drifts from the source, and `python3 scripts/sync_power.py` refreshes it.
+
+## Install with the script
 
 ```sh
 python3 /path/to/trick-or-trust/ghostkit/install.py apply . --yes

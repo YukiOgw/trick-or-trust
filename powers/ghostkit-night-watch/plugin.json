@@ -1,0 +1,23 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "ghostkit-night-watch",
+  "version": "0.1.0",
+  "description": "Night Watch for Kiro: install a guard that asks before risky shell commands and blocks switching off TLS verification, and audit a project for over-broad permissions and credit-hungry setup.",
+  "author": {
+    "name": "Yuki Ogawa"
+  },
+  "homepage": "https://github.com/YukiOgw/trick-or-trust",
+  "repository": "https://github.com/YukiOgw/trick-or-trust",
+  "license": "MIT",
+  "keywords": [
+    "night-watch",
+    "ghostkit",
+    "risky commands",
+    "approval",
+    "permissions audit",
+    "kiro setup audit"
+  ],
+  "extensions": {
+    "dev.kiro": {}
+  }
+}

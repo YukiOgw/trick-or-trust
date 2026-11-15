@@ -90,6 +90,10 @@ ghostkit/       the skeleton: event, policy, decision, safety, log, report, inst
 apps/
   haunted-house/  app 1: practice rooms
   night-watch/    app 2: guard for everyday projects
+powers/         Night Watch as a Kiro power (skills plus a bundled copy of ghostkit)
+tests/          106 tests (pytest, hypothesis)
+docs/           landing page and a sample graveyard
+scripts/        sync_power.py refreshes the power's copy of ghostkit
 poc/            the experiments behind the design
 ```
 
