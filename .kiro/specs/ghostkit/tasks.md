@@ -87,3 +87,33 @@
 
 What `tasks.md` is for: it becomes the checklist the implementation follows,
 one task at a time, each verified by its tests before moving on.
+
+
+## Status (2026-11-15)
+
+The plan above was written as a bottom-up list. We built it as a vertical slice first
+(engine, then one room that raises a ghost, then the report), because the point of the
+product is something a person can touch. Tests followed once the behavior was real.
+
+| Task | State | Notes |
+| --- | --- | --- |
+| 1 Skeleton and test harness | Done | `pyproject.toml`, a test-only virtualenv (pytest, hypothesis); runtime stays standard library |
+| 2 Event ingestion | Done | `ghostkit/event.py`, `tests/test_event.py` |
+| 3 Policy engine | Done | `ghostkit/policy.py`; the precedence property test is in `tests/test_policy.py` |
+| 4 Decision output | Done | `ghostkit/decision.py`, `tests/test_decision.py`; protocol shapes come from the PoC |
+| 5 Entry point | Done | `ghostkit/run.py`; bad arguments now exit 0, found by `tests/test_run.py` |
+| 6 Logging | Done | `ghostkit/log.py`; records a `rejected` flag, not the response body |
+| 7 Training-mode guard | Done | `ghostkit/safety.py`; a URL user-info bypass was found and fixed (`tests/test_safety.py`) |
+| 8 Reporting | Done | `ghostkit/report.py`; a denied hook approval is classified from the later `Stop` event |
+| 9 Installer | Done | `ghostkit/install.py`; paths are always absolute; adds the `Stop` hook |
+| 10 Integration | Done | 10.1 by `tests/test_run.py`; 10.2 by running a real room in Kiro (the hook loads in one step) |
+
+Changes to the design found while running it for real:
+
+- A denied hook approval fires no `PostToolUse`, so the report needs the `Stop` event (R4.3, R5.2).
+- Loopback hosts are allowed by the guard so a room can talk to its own machine (R7.4).
+- The guard reads URLs and a short list of paths only. It is a safety net, not a sandbox (R7.4).
+
+Added beyond the original plan: `ghostkit/audit.py` (Night Watch audit), Haunted House rooms 1 to 3,
+the repository's own `.kiro/hooks`, and the practice-room steering that makes the approval screen
+appear reliably.
