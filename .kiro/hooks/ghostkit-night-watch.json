@@ -1,0 +1,37 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Night Watch: PreToolUse (shell)",
+      "trigger": "PreToolUse",
+      "matcher": "shell",
+      "description": "Dogfooding: this repository is developed with its own Night Watch policy. Asks before risky shell commands (curl piped to a shell, chmod 777, rm -rf) and blocks switching off TLS verification. Paths are relative to the repository root.",
+      "action": {
+        "type": "command",
+        "command": "P=ghostkit/run.py; if [ -f \"$P\" ]; then python3 -I -S \"$P\" PreToolUse --policy apps/night-watch/ghostkit.toml --log .ghostkit/events.jsonl; fi",
+        "timeout": 10
+      }
+    },
+    {
+      "name": "Night Watch: PostToolUse (shell)",
+      "trigger": "PostToolUse",
+      "matcher": "shell",
+      "description": "Records how each shell command ended, so the graveyard report can tell an approval from a refusal.",
+      "action": {
+        "type": "command",
+        "command": "P=ghostkit/run.py; if [ -f \"$P\" ]; then python3 -I -S \"$P\" PostToolUse --policy apps/night-watch/ghostkit.toml --log .ghostkit/events.jsonl || true; fi",
+        "timeout": 10
+      }
+    },
+    {
+      "name": "Night Watch: Stop",
+      "trigger": "Stop",
+      "description": "Marks the end of an agent turn, which resolves any approval that was refused.",
+      "action": {
+        "type": "command",
+        "command": "P=ghostkit/run.py; if [ -f \"$P\" ]; then python3 -I -S \"$P\" Stop --policy apps/night-watch/ghostkit.toml --log .ghostkit/events.jsonl || true; fi",
+        "timeout": 10
+      }
+    }
+  ]
+}
