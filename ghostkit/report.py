@@ -113,3 +113,25 @@ def build(log_paths, title: str = "Trick or Trust — Graveyard") -> str:
   </table>
 </body></html>
 """
+
+
+def main(argv=None) -> int:
+    """CLI: python3 ghostkit/report.py <events.jsonl> [more.jsonl ...] [-o graveyard.html]"""
+    import argparse
+
+    parser = argparse.ArgumentParser(prog="ghostkit-report")
+    parser.add_argument("logs", nargs="+", help="one or more events.jsonl files")
+    parser.add_argument("-o", "--output", default="graveyard.html", help="output HTML path")
+    args = parser.parse_args(argv)
+
+    html_text = build(args.logs)
+    Path(args.output).write_text(html_text, encoding="utf-8")
+    encounters = classify(read_events(args.logs))
+    print(f"Wrote {args.output} ({len(encounters)} encounter(s))")
+    return 0
+
+
+if __name__ == "__main__":
+    import sys
+
+    sys.exit(main())

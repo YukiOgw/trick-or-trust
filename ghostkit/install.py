@@ -81,6 +81,9 @@ def _resolve(room: str):
     import os
 
     here = os.path.dirname(os.path.abspath(__file__))
+    # Always absolute: hooks run with the workspace as cwd, so relative paths
+    # would not resolve and ghostkit would silently fail safe (no ghost).
+    room = os.path.abspath(os.path.expanduser(room))
     engine = os.path.join(here, "run.py")
     policy = os.path.join(room, "ghostkit.toml")
     log = os.path.join(room, ".ghostkit", "events.jsonl")
