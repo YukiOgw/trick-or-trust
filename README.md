@@ -85,7 +85,7 @@ These are observations from experiments we ran on Kiro IDE 1.4.62 (see [`poc/`](
 ## Repository layout
 
 ```
-.kiro/          specs and steering used to build this project
+.kiro/          specs, steering, and hooks used to build this project (the hooks run Night Watch on this repo)
 ghostkit/       the skeleton: event, policy, decision, safety, log, report, install, run
 apps/
   haunted-house/  app 1: practice rooms
@@ -99,8 +99,8 @@ poc/            the experiments behind the design
 
 ## Status
 
-Working today: ghostkit, Haunted House rooms 1 to 3, the graveyard report, the installer, and the Night Watch default policy.
-Next: rooms whose trap is a file edit rather than a command, a Night Watch configuration audit, tests, and a landing page.
+Working today: ghostkit, Haunted House rooms 1 to 3, the graveyard report, the installer, Night Watch (policy and read-only audit), Night Watch as a Kiro power, 106 tests, and a landing page in `docs/`.
+Next: rooms whose trap is a file edit rather than a command.
 
 ## License
 
