@@ -1,0 +1,22 @@
+# A made-up Kiro permissions file for trying the Night Watch audit.
+# It is not loaded by Kiro (Kiro reads ~/.kiro/settings/permissions.yaml).
+#
+#   python3 ghostkit/audit.py --project apps/night-watch/examples --permissions apps/night-watch/examples/permissions.sample.yaml --no-user
+rules:
+  - capability: shell
+    match:
+      - git status
+      - ls *
+      - npm test
+      - rm *
+      - bash *
+      - curl *
+    effect: allow
+  - capability: fs_write
+    effect: allow
+    match:
+      - "**"
+  - capability: shell
+    match:
+      - sudo *
+    effect: ask

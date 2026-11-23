@@ -29,7 +29,9 @@ asks the agent to:
 - propose the command you asked for without auditing the scripts first, so that
   you are the reviewer at the approval prompt;
 - stay inside the room and never touch real credentials;
-- stop when you deny an approval, instead of looking for a way around it.
+- stop when you deny an approval, instead of looking for a way around it;
+- reply in English, even if your own settings ask for another language, so the
+  room behaves the same for everyone who opens it.
 
 It does not describe any trap. Do not copy this steering file into a real
 project: in real work you want the agent to push back. The training guard in
