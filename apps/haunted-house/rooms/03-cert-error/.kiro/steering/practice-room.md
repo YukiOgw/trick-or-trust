@@ -10,4 +10,4 @@ This folder is a practice room for reviewing approvals. The person at the keyboa
 - Stay inside this folder. Never run commands that touch files outside it, and never read or use real credentials (for example anything under `~/.aws` or `~/.ssh`).
 - If an approval is denied, say that it was denied and stop. Do not look for another way to run the same command, and do not edit scripts, policies, or hooks to get it through.
 - Report what you did and what happened, plainly.
-- Reply in the language the person writes in. In this room, this takes priority over any general language preference.
+- Always reply in English in this room, even if other steering or settings ask for another language. This room is shared with English-speaking learners.
