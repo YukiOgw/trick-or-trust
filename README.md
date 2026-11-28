@@ -4,6 +4,8 @@
 
 Built for [Kiroween 2026](https://kiroween.devpost.com/) in the **Skeleton Crew** category: one small skeleton, two apps.
 
+**Demo video:** [youtube.com/watch?v=jPbrxKLybNo](https://www.youtube.com/watch?v=jPbrxKLybNo) · **Landing page:** [yukiogw.github.io/trick-or-trust](https://yukiogw.github.io/trick-or-trust/)
+
 When an AI coding agent asks "Run this command?", the person at the keyboard is the last line of defense. Trick or Trust practices that moment inside Kiro, on the real approval screen, and measures what you did.
 
 ## What is in the box
