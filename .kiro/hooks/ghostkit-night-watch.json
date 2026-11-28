@@ -5,7 +5,7 @@
       "name": "Night Watch: PreToolUse (shell)",
       "trigger": "PreToolUse",
       "matcher": "shell",
-      "description": "Dogfooding: this repository is developed with its own Night Watch policy. Asks before risky shell commands (curl piped to a shell, chmod 777, rm -rf) and blocks switching off TLS verification. Paths are relative to the repository root.",
+      "description": "This repository ships its own Night Watch policy, so it is guarded whenever it is opened in Kiro. Asks before risky shell commands (curl piped to a shell, chmod 777, rm -rf) and blocks switching off TLS verification. Paths are relative to the repository root.",
       "action": {
         "type": "command",
         "command": "P=ghostkit/run.py; if [ -f \"$P\" ]; then python3 -I -S \"$P\" PreToolUse --policy apps/night-watch/ghostkit.toml --log .ghostkit/events.jsonl; fi",
